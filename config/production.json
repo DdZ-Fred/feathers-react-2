@@ -1,0 +1,10 @@
+{
+  "host": "feathers-react-2-app.feathersjs.com",
+  "port": 80,
+  "mongodb": "mongodb://localhost:27017/feathersReact2",
+  "public": "../public/",
+  "auth": {
+    "token": {},
+    "local": {}
+  }
+}
