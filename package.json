@@ -18,7 +18,12 @@
   "scripts": {
     "test": "npm run jshint && npm run mocha",
     "jshint": "jshint src/. test/. --config",
-    "start": "node src/",
+    "start": "if-env NODE_ENV=development && npm run start:dev || npm run start:prod",
+    "start:dev": "run-p --print-label build:watch start:server",
+    "start:prod": "npm run build:prod && npm run start:server",
+    "build:watch": "webpack --watch --config webpack.config.dev.js",
+    "build:prod": "webpack --config webpack.config.prod.js",
+    "start:server": "node ./src",
     "mocha": "mocha test/ --recursive"
   },
   "dependencies": {
@@ -36,6 +41,7 @@
     "feathers-errors": "^2.4.0",
     "feathers-hooks": "^1.5.6",
     "feathers-mongoose": "^3.5.1",
+    "feathers-react-helpers": "^1.0.6",
     "feathers-rest": "^1.4.3",
     "feathers-socketio": "^1.4.1",
     "if-env": "^1.0.0",
@@ -44,6 +50,7 @@
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
+    "react-router": "^2.6.1",
     "redux": "^3.5.2",
     "redux-form": "^5.3.2",
     "redux-promise": "^0.5.3",
@@ -58,6 +65,7 @@
     "eslint-plugin-import": "^1.13.0",
     "jshint": "^2.9.2",
     "mocha": "^3.0.2",
+    "npm-run-all": "^2.3.0",
     "request": "^2.74.0"
   }
 }

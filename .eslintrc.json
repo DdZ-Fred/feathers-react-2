@@ -6,8 +6,10 @@
   },
   "extends": "airbnb-base",
   "parserOptions": {
-    "jsx": true,
-    "experimentalObjectRestSpread": true
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
   },
   "plugins": [
     "import"
