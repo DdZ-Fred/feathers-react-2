@@ -10,7 +10,7 @@ import Signup from './components/Signup';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
-    <Route path='/team' component={Team} />
+    <Route path="/team" component={Team} />
     <Route path="/signup" component={Signup} />
   </Route>
 );

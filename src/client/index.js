@@ -15,10 +15,11 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 
 const store = createStoreWithMiddleware(rootReducer);
+const feathers = initFeathers();
 
 render(
   <Provider store={store}>
-    <FeathersConnector feathers={initFeathers}>
+    <FeathersConnector feathers={feathers}>
       <Router history={browserHistory} routes={routes}/>
     </FeathersConnector>
   </Provider>,
