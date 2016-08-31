@@ -1,24 +1,97 @@
 import React, { PropTypes } from 'react';
-const propTypes = {
+import { withFeathers } from 'feathers-react-helpers';
+import { Field, reduxForm } from 'redux-form';
+// import axios from 'axios';
 
+const propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
 };
 
-function Signup() {
+function renderField({ input, label, type, placeholder, meta: { touched, error } }) {
   return (
-    <div>
-      <form action="/signup" className="ui form">
-        <div className="field">
-          <label htmlFor="email">Email:</label>
-          <input type="text" placeholder="Enter your email" {...email} />
-        </div>
-        <div className="field">
-          <label htmlFor="password">Password:</label>
-          <input type="text" placeholder="Enter your password" {...password} />
-        </div>
-        <button className="ui button" type="submit">Submit</button>
-      </form>
+    <div className={touched && error ? 'field error' : 'field'}>
+      <label htmlFor={input.name}>{`${label}:`}</label>
+      <input id={input.name} {...input} type={type} placeholder={placeholder}/>
+      {
+        touched && error &&
+        <div className="ui error message">{error}</div>
+      }
     </div>
   );
 }
 
-export default Signup;
+class Signup extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(fields) {
+    console.log(fields);
+    // this.props.feathers.service('users').create(fields)
+    //  .then((user) => {
+    //    console.log('Data', user);
+    //  });
+    this.props.feathers.service('users').create(fields).then(user => console.log(user));
+  }
+
+  render() {
+    const { handleSubmit, submitting, valid } = this.props;
+    let formStyle = 'ui form';
+    if (!valid) {
+      formStyle += ' error';
+    }
+    if (submitting) {
+      formStyle += ' loading';
+    }
+
+    return (
+      <div>
+
+        <h3>Signup Form</h3>
+        <form
+          className={formStyle}
+          onSubmit={handleSubmit(this.handleSubmit)}>
+          <Field
+            name="email"
+            component={renderField}
+            type="email"
+            label="Email"
+            placeholder="Enter your email" />
+          <Field
+            name="password"
+            component={renderField}
+            type="password"
+            label="Password"
+            placeholder="Enter your password" />
+          <button
+            className="ui button"
+            type="submit"
+            disabled={submitting}>Submit</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+Signup.propTypes = propTypes;
+
+function validate(values) {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Required';
+  }
+  if (!values.password) {
+    errors.password = 'Required';
+  }
+
+  return errors;
+}
+
+export default reduxForm({
+  form: 'signup',
+  validate,
+})(withFeathers(Signup));

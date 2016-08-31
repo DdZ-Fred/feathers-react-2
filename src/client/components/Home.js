@@ -5,6 +5,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
+        <h3>HOME</h3>
         <p>This is m home page</p>
         <hr/>
         Meet our team <Link to="/team">here</Link>

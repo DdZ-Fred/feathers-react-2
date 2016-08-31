@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 class Team extends React.Component {
   render() {
     return (
-      <div>This is our team</div>
+      <div>
+        <h3>TEAM</h3>
+        This is our team
+      </div>
     );
   }
 }
