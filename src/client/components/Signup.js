@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import { withFeathers } from 'feathers-react-helpers';
 import { Field, reduxForm } from 'redux-form';
-// import axios from 'axios';
+import { connect } from 'react-redux';
+import { createUser } from '../actions/userActions';
 
 const propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  createUser: PropTypes.func.isRequired,
 };
 
 function renderField({ input, label, type, placeholder, meta: { touched, error } }) {
@@ -30,11 +32,8 @@ class Signup extends React.Component {
 
   handleSubmit(fields) {
     console.log(fields);
-    // this.props.feathers.service('users').create(fields)
-    //  .then((user) => {
-    //    console.log('Data', user);
-    //  });
-    this.props.feathers.service('users').create(fields).then(user => console.log(user));
+    // Add SIGNUP ACTION
+    this.props.createUser(fields);
   }
 
   render() {
@@ -94,4 +93,7 @@ function validate(values) {
 export default reduxForm({
   form: 'signup',
   validate,
-})(withFeathers(Signup));
+})(withFeathers(
+    connect(
+      null, { createUser }
+)(Signup)));
