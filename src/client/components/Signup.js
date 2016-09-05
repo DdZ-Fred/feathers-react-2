@@ -90,10 +90,10 @@ function validate(values) {
   return errors;
 }
 
+Signup = connect(null, { createUser })(Signup);
+Signup = withFeathers()(Signup);
+
 export default reduxForm({
   form: 'signup',
   validate,
-})(withFeathers(
-    connect(
-      null, { createUser }
-)(Signup)));
+})(Signup);
