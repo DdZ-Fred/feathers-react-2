@@ -4,7 +4,7 @@ import { CREATE_USER,
   PATCH_USER,
   DELETE_USER,
   LOGOUT_USER,
-} from '../actions/userActions';
+} from 'actions/userActions';
 
 export default function (state = null, action) {
   switch (action.type) {

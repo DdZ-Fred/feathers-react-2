@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { withFeathers } from 'feathers-react-helpers';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { createUser } from '../actions/userActions';
+import { createUser } from 'actions/userActions';
 
 const propTypes = {
   handleSubmit: PropTypes.func.isRequired,

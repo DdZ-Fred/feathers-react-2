@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   entry: './src/client/index.js',
@@ -8,6 +9,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js'],
+    root: [
+      path.resolve('./src/client')
+    ]
   },
   module: {
     loaders: [

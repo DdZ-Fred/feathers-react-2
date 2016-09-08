@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   entry: './src/client/index.js',
   output: {
@@ -6,6 +8,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js'],
+    root: [
+      path.resolve('./src/client')
+    ]
   },
   module: {
     loaders: [
