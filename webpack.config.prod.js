@@ -2,7 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  entry: './src/client/index.js',
+  entry: [
+    'babel-polyfill',
+    './src/client/index.js'
+  ],
   output: {
     path: './public',
     filename: 'bundle.js',
@@ -24,6 +27,9 @@ module.exports = {
             'es2015',
             'stage-2',
           ],
+          plugins: [
+            'transform-regenerator'
+          ]
         },
       },
     ],

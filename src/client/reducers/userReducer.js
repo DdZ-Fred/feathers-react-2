@@ -13,8 +13,9 @@ export default function (state = null, action) {
         console.log('CREATE_USER: Error', action.payload);
 
         // Do something with error
+      } else {
+        
       }
-      console.log('CREATE_USER: Success', action.payload);
 
       return state;
     }
