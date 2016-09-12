@@ -12,6 +12,7 @@ import initFeathers from 'feathers';
 import routes from 'routes';
 import sagas from 'sagas/';
 
+
 // const createStoreWithMiddleware = applyMiddleware(
 //   promiseMiddleware
 // )(createStore);

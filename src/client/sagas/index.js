@@ -1,7 +1,7 @@
-import createUserSaga from 'sagas/createUserSaga';
-import loginUser from 'sagas/loginUserSaga';
+import userSaga from 'sagas/createUserSaga';
+import authSaga from 'sagas/loginUserSaga';
 
 export default [
-  createUserSaga,
-  loginUser,
-]
+  userSaga,
+  authSaga,
+];

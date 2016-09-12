@@ -14,7 +14,7 @@ export default function (state = null, action) {
 
         // Do something with error
       } else {
-        
+
       }
 
       return state;
